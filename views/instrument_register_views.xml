@@ -7,7 +7,11 @@
             <list string="Instrument Register" default_order="delivery_date desc, register_no">
                 <field name="register_no" optional="show"/>
                 <field name="customer_name"/>
+<<<<<<< HEAD
                 <field name="instrument_model"/>
+=======
+                <field name="product_id"/>
+>>>>>>> cc532bb (update the instrument fields)
                 <field name="serial_number"/>
                 <field name="site_city" optional="show"/>
                 <field name="delivery_date" optional="show"/>
@@ -27,6 +31,7 @@
         <field name="arch" type="xml">
             <form string="Instrument Field Service Register">
                 <sheet>
+<<<<<<< HEAD
                     <div class="oe_title">
                         <label for="customer_name"/>
                         <h1><field name="customer_name" placeholder="Customer or ship-to name"/></h1>
@@ -36,6 +41,19 @@
                             <field name="register_no"/>
                             <field name="instrument_model"/>
                             <field name="serial_number"/>
+=======
+                    <group>
+                        <group string="Instrument">
+                            <field name="register_no"/>
+                            <field name="product_id" options="{'no_create': True}"/>
+                            <field name="serial_number"/>
+                            <field name="block_serial_number"/>
+                            <field name="heated_cover_serial_number"/>
+                            <field name="region"/>
+                            <field name="zone"/>
+                            <field name="customer_name" string="Customer Name"/>
+                            <field name="customer_contact_number"/>
+>>>>>>> cc532bb (update the instrument fields)
                             <field name="site_city"/>
                         </group>
                         <group string="Delivery">
@@ -51,6 +69,19 @@
                                 <field name="installer_name"/>
                                 <field name="installation_fse_fas"/>
                             </group>
+<<<<<<< HEAD
+=======
+                            <group string="Installation Documents">
+                                <field name="installation_checklist_complete"/>
+                                <field name="installation_checklist_document" filename="installation_checklist_filename"
+                                       widget="binary" string="Installation Checklist Document"/>
+                                <field name="installation_checklist_filename" invisible="1"/>
+                                <field name="iq_oq_ipv_complete"/>
+                                <field name="iq_oq_ipv_document" filename="iq_oq_ipv_filename" widget="binary"
+                                       string="IQ/OQ/IPV Documentation"/>
+                                <field name="iq_oq_ipv_filename" invisible="1"/>
+                            </group>
+>>>>>>> cc532bb (update the instrument fields)
                         </page>
                         <page string="SSO Training">
                             <group>
@@ -73,6 +104,11 @@
                         <page string="Calibration and Notes">
                             <group>
                                 <field name="calibration_status"/>
+<<<<<<< HEAD
+=======
+                                <field name="last_calibration_date"/>
+                                <field name="next_calibration_date"/>
+>>>>>>> cc532bb (update the instrument fields)
                                 <field name="last_updated"/>
                             </group>
                             <group string="Remarks / Next Action" col="4">
@@ -93,14 +129,22 @@
             <search string="Search Instrument Register">
                 <field name="customer_name"/>
                 <field name="serial_number"/>
+<<<<<<< HEAD
                 <field name="instrument_model"/>
+=======
+                <field name="product_id"/>
+>>>>>>> cc532bb (update the instrument fields)
                 <field name="site_city"/>
                 <filter name="delivery_pending" string="Delivery Pending" domain="[('delivery_status', '=', 'pending')]"/>
                 <filter name="installation_pending" string="Installation Pending" domain="[('installation_status', '=', 'pending')]"/>
                 <filter name="training_pending" string="SSO Training Pending" domain="[('sso_training_status', '=', 'pending')]"/>
                 <separator/>
                 <filter name="group_by_city" string="Site / City" context="{'group_by': 'site_city'}"/>
+<<<<<<< HEAD
                 <filter name="group_by_model" string="Instrument Model" context="{'group_by': 'instrument_model'}"/>
+=======
+                <filter name="group_by_model" string="Instrument Model" context="{'group_by': 'product_id'}"/>
+>>>>>>> cc532bb (update the instrument fields)
                 <filter name="group_by_installation" string="Installation Status" context="{'group_by': 'installation_status'}"/>
                 <filter name="group_by_training" string="SSO Training Status" context="{'group_by': 'sso_training_status'}"/>
                 <filter name="group_by_delivery" string="Delivery Status" context="{'group_by': 'delivery_status'}"/>
@@ -126,6 +170,10 @@
         <field name="arch" type="xml">
             <pivot string="Instrument Service Report" display_quantity="1">
                 <field name="site_city" type="row"/>
+<<<<<<< HEAD
+=======
+                <field name="product_id" type="row"/>
+>>>>>>> cc532bb (update the instrument fields)
                 <field name="installation_status" type="col"/>
                 <field name="record_count" type="measure" string="Records"/>
             </pivot>
