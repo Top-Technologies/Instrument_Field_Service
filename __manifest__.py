@@ -1,17 +1,17 @@
 {
     "name": "Instrument Field Service Register",
     "summary": "Instrument delivery, installation, SSO training, and calibration register",
-<<<<<<< HEAD
+
     "version": "19.0.1.0.3",
     "category": "Services/Field Service",
     "license": "LGPL-3",
     "depends": ["industry_fsm"],
-=======
+
     "version": "19.0.1.0.5",
     "category": "Services/Field Service",
     "license": "LGPL-3",
     "depends": ["industry_fsm", "product"],
->>>>>>> cc532bb (update the instrument fields)
+
     "data": [
         "security/ir.model.access.csv",
         "views/instrument_register_views.xml",
