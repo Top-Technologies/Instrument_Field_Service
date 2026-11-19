@@ -27,10 +27,6 @@
         <field name="arch" type="xml">
             <form string="Instrument Field Service Register">
                 <sheet>
-                    <div class="oe_title">
-                        <label for="customer_name"/>
-                        <h1><field name="customer_name" placeholder="Customer or ship-to name"/></h1>
-                    </div>
                     <group>
                         <group string="Instrument">
                             <field name="register_no"/>
@@ -59,11 +55,15 @@
                             </group>
                             <group string="Installation Documents">
                                 <field name="installation_checklist_complete"/>
-                                <field name="installation_checklist_document" filename="installation_checklist_filename"
-                                       widget="binary" string="Installation Checklist Document"/>
+                                <field name="installation_checklist_document"
+                                       filename="installation_checklist_filename"
+                                       widget="binary"
+                                       string="Installation Checklist Document"/>
                                 <field name="installation_checklist_filename" invisible="1"/>
                                 <field name="iq_oq_ipv_complete"/>
-                                <field name="iq_oq_ipv_document" filename="iq_oq_ipv_filename" widget="binary"
+                                <field name="iq_oq_ipv_document"
+                                       filename="iq_oq_ipv_filename"
+                                       widget="binary"
                                        string="IQ/OQ/IPV Documentation"/>
                                 <field name="iq_oq_ipv_filename" invisible="1"/>
                             </group>
@@ -94,7 +94,10 @@
                                 <field name="last_updated"/>
                             </group>
                             <group string="Remarks / Next Action" col="4">
-                                <field name="remarks_next_action" colspan="4" nolabel="1" widget="text"
+                                <field name="remarks_next_action"
+                                       colspan="4"
+                                       nolabel="1"
+                                       widget="text"
                                        placeholder="Add remarks or the next action"/>
                             </group>
                         </page>
@@ -113,13 +116,76 @@
                 <field name="serial_number"/>
                 <field name="product_id"/>
                 <field name="site_city"/>
-                <filter name="delivery_pending" string="Delivery Pending" domain="[('delivery_status', '=', 'pending')]"/>
-                <filter name="installation_pending" string="Installation Pending" domain="[('installation_status', '=', 'pending')]"/>
-                <filter name="training_pending" string="SSO Training Pending" domain="[('sso_training_status', '=', 'pending')]"/>
+                <filter name="delivery_pending"
+                        string="Delivery Pending"
+                        domain="[('delivery_status', '=', 'pending')]"/>
+                <filter name="installation_pending"
+                        string="Installation Pending"
+                        domain="[('installation_status', '=', 'pending')]"/>
+                <filter name="training_pending"
+                        string="SSO Training Pending"
+                        domain="[('sso_training_status', '=', 'pending')]"/>
                 <separator/>
                 <filter name="group_by_city" string="Site / City" context="{'group_by': 'site_city'}"/>
                 <filter name="group_by_model" string="Instrument Model" context="{'group_by': 'product_id'}"/>
                 <filter name="group_by_installation" string="Installation Status" context="{'group_by': 'installation_status'}"/>
                 <filter name="group_by_training" string="SSO Training Status" context="{'group_by': 'sso_training_status'}"/>
                 <filter name="group_by_delivery" string="Delivery Status" context="{'group_by': 'delivery_status'}"/>
-                <filter name="group_by_calibration" string="Calibration Status" context="{'group_by': 'calibration_status
+                <filter name="group_by_calibration" string="Calibration Status" context="{'group_by': 'calibration_status'}"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_instrument_field_service_register_graph" model="ir.ui.view">
+        <field name="name">instrument.field.service.register.graph</field>
+        <field name="model">instrument.field.service.register</field>
+        <field name="arch" type="xml">
+            <graph string="Instrument Service Status" type="bar">
+                <field name="installation_status"/>
+                <field name="record_count" type="measure" string="Records"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="view_instrument_field_service_register_pivot" model="ir.ui.view">
+        <field name="name">instrument.field.service.register.pivot</field>
+        <field name="model">instrument.field.service.register</field>
+        <field name="arch" type="xml">
+            <pivot string="Instrument Service Report" display_quantity="1">
+                <field name="site_city" type="row"/>
+                <field name="product_id" type="row"/>
+                <field name="installation_status" type="col"/>
+                <field name="record_count" type="measure" string="Records"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="action_instrument_field_service_register" model="ir.actions.act_window">
+        <field name="name">Instrument Register</field>
+        <field name="res_model">instrument.field.service.register</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_instrument_field_service_register_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create an instrument register entry</p>
+            <p>Track delivery, installation, SSO training, calibration, and next actions.</p>
+        </field>
+    </record>
+
+    <record id="action_instrument_field_service_reporting" model="ir.actions.act_window">
+        <field name="name">Instrument Register Reporting</field>
+        <field name="res_model">instrument.field.service.register</field>
+        <field name="view_mode">graph,pivot,list</field>
+        <field name="search_view_id" ref="view_instrument_field_service_register_search"/>
+    </record>
+
+    <menuitem id="menu_instrument_field_service_register"
+              name="Instrument Register"
+              parent="industry_fsm.fsm_menu_root"
+              action="action_instrument_field_service_register"
+              sequence="60"/>
+    <menuitem id="menu_instrument_field_service_reporting"
+              name="Instrument Register Reporting"
+              parent="industry_fsm.fsm_menu_reporting"
+              action="action_instrument_field_service_reporting"
+              sequence="70"/>
+</odoo>
