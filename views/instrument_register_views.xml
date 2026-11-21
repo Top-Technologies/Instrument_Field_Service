@@ -36,7 +36,7 @@
                             <field name="heated_cover_serial_number"/>
                             <field name="region"/>
                             <field name="zone"/>
-                            <field name="customer_name" string="Customer Name"/>
+                            <field name="customer_name" string="Customer Name" required="False"/>
                             <field name="customer_contact_number"/>
                             <field name="site_city"/>
                         </group>
