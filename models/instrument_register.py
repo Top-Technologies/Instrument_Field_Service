@@ -8,7 +8,7 @@ class InstrumentFieldServiceRegister(models.Model):
     _order = "delivery_date desc, register_no, id desc"
 
     register_no = fields.Integer(string="No.", index=True)
-    customer_name = fields.Char(string="Customer Name", required=True, index=True)
+    customer_name = fields.Char(string="Customer Name", index=True)
     # Keep the former free-text field so existing register values remain intact.
     instrument_model = fields.Char(string="Legacy Instrument Model", index=True)
     product_id = fields.Many2one(

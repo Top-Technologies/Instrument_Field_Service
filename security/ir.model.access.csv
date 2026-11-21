@@ -1,3 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_instrument_field_service_register_user,instrument.field.service.register user,model_instrument_field_service_register,base.group_user,1,1,1,1
 access_instrument_field_service_participant_user,instrument.field.service.participant user,model_instrument_field_service_participant,base.group_user,1,1,1,1
+access_project_task_spare_part_user,project.task.spare.part user,model_project_task_spare_part,base.group_user,1,1,1,1
