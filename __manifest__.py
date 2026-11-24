@@ -8,7 +8,7 @@
     "data": [
         "security/ir.model.access.csv",
         "views/instrument_register_views.xml",
-        "views/project_task_views.xml",
+        
     ],
     "application": False,
     "installable": True,
