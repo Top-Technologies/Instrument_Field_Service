@@ -97,6 +97,22 @@ class InstrumentFieldServiceParticipant(models.Model):
     )
     participant_name = fields.Char(string="Participant Name", required=True)
     role_or_organization = fields.Char(string="Role / Organization")
+    training_confirmation = fields.Binary(
+        string="Training Confirmation",
+        attachment=True,
+    )
+    training_confirmation_filename = fields.Char(string="Training Confirmation File Name")
+
+    def action_open_training_confirmation(self):
+        self.ensure_one()
+        if not self.training_confirmation:
+            return False
+        filename = self.training_confirmation_filename or "training_confirmation.pdf"
+        return {
+            "type": "ir.actions.act_url",
+            "url": f"/web/content/instrument.field.service.participant/{self.id}/training_confirmation/{filename}",
+            "target": "new",
+        }
 
 
 class FieldServiceTaskMaintenance(models.Model):
@@ -111,7 +127,7 @@ class FieldServiceTaskMaintenance(models.Model):
     spare_part_line_ids = fields.One2many(
         "project.task.spare.part",
         "task_id",
-        string="Spare Parts Used",
+        string="Spare Part Lines",
         copy=True,
     )
     distance_travelled = fields.Float(string="Distance Travelled (km)", digits=(16, 2))

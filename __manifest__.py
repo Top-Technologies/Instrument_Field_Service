@@ -1,7 +1,7 @@
 {
     "name": "Instrument Field Service Register",
     "summary": "PCR installation register and field service maintenance task tracking",
-    "version": "19.0.1.0.14",
+    "version": "19.0.1.0.17",
     "category": "Services/Field Service",
     "license": "LGPL-3",
     "depends": ["industry_fsm", "product"],

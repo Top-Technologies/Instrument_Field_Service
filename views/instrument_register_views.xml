@@ -78,6 +78,15 @@
                                         </control>
                                         <field name="participant_name"/>
                                         <field name="role_or_organization" optional="show"/>
+                                        <field name="training_confirmation_filename" column_invisible="1"/>
+                                        <field name="training_confirmation" filename="training_confirmation_filename"
+                                               widget="binary" string="Training Confirmation"/>
+                                        <button name="action_open_training_confirmation"
+                                                type="object"
+                                                icon="fa-external-link"
+                                                string="Open"
+                                                title="Open file in new tab"
+                                                invisible="not training_confirmation"/>
                                     </list>
                                 </field>
                             </group>
